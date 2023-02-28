@@ -2,9 +2,17 @@
 // Property & method 
 // jualan produk & komik & game
 
+use Produk as GlobalProduk;
+
 class Produk
 {
-  public $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0;
+  public  $judul = "judul",
+    $penulis = "penulis",
+    $penerbit = "penerbit";
+
+  //visibility
+  protected $Diskon = 0;
+  private $harga = 0;
 
   public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0)
   {
@@ -17,6 +25,11 @@ class Produk
   public function getLabel()
   {
     return "$this->penulis, $this->penerbit";
+  }
+
+  public function getHarga()
+  {
+    return $this->harga - ($this->harga * $this->Diskon / 100);
   }
 
   // inharitance
@@ -51,6 +64,10 @@ class Komik extends Produk
 
     $this->jmlHalaman = $jmlHalaman;
   }
+  public function getDiskon($Diskon)
+  {
+    $this->Diskon = $Diskon;
+  }
 
   public function getInfoProduk()
   {
@@ -71,10 +88,14 @@ class Game extends Produk
 
     $this->waktuMain = $waktuMain;
   }
+  public function getDiskon($Diskon)
+  {
+    $this->Diskon = $Diskon;
+  }
 
   public function getInfoProduk()
   {
-    $str = "Game : " . parent::getInfoProduk() . " ~ {$this->waktuMain} Jam.";
+    $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam.";
     return $str;
   }
 }
@@ -87,3 +108,6 @@ $produk2 = new Game("Boruto", "Harahap", "Jiraiya uzumaki", 40000, 50);
 echo $produk1->getInfoProduk();
 echo "<br>";
 echo $produk2->getInfoProduk();
+echo "<hr>";
+$produk2->getdiskon(50);
+echo $produk2->getHarga();

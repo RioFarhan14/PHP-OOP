@@ -1,11 +1,12 @@
-<?php 
+<?php
 // Property & method 
 // jualan produk & komik & game
 
-class Produk {
+class Produk
+{
   public $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman, $waktuMain;
 
-  public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman, $waktuMain)
+  public function __construct($judul, $penulis, $penerbit, $harga, $jmlHalaman, $waktuMain)
   {
     $this->judul = $judul;
     $this->penulis = $penulis;
@@ -15,36 +16,44 @@ class Produk {
     $this->waktuMain = $waktuMain;
   }
 
-  public function getLabel() {
+  public function getLabel()
+  {
     return "$this->penulis, $this->penerbit";
   }
 
   // inharitance
-  public function getInfoProduk() {
-    $str = "{$this->tipe} : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) - {$this->jmlHalaman} Halaman."; 
+  public function getInfoProduk()
+  {
+    $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) - {$this->jmlHalaman} Halaman.";
 
     return $str;
   }
 }
 
 // objexk - type
-class CetakInfoProduk {
-  public function cetak( $produk ){
+class CetakInfoProduk
+{
+  public function cetak($produk)
+  {
     $str = "{$produk->judul} | {$produk->getlabel()} (Rp. {$produk->harga})";
     return $str;
   }
 }
 
 // Inharitance
-class Komik extends Produk {
-  public function getInfoProduk() {
+class Komik extends Produk
+{
+  public function getInfoProduk()
+  {
     $str = "Komik : " . parent::getInfoProduk() . " - {$this->jmlHalaman} Halaman.";
     return $str;
   }
 }
 
-class Game extends Produk {
-  public function getInfoProduk() {
+class Game extends Produk
+{
+  public function getInfoProduk()
+  {
     $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam.";
     return $str;
   }

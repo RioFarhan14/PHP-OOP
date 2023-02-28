@@ -5,7 +5,7 @@
 class Produk {
   public $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman, $waktuMain, $tipe;
 
-  public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman, $waktuMain, $tipe)
+  public function __construct($judul, $penulis, $penerbit, $harga, $jmlHalaman , $waktuMain, $tipe)
   {
     $this->judul = $judul;
     $this->penulis = $penulis;
@@ -96,6 +96,3 @@ echo $produk2->getInfoLengkap();
 // echo "<br>";
 // echo $produk3->getLabel();
 // var_dump($produk3);
-
-
-?>

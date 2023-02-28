@@ -1,11 +1,12 @@
-<?php 
+<?php
 // Property & method 
 // jualan produk & komik & game
 
-class Produk {
+class Produk
+{
   public $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman, $waktuMain, $tipe;
 
-  public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman, $waktuMain, $tipe)
+  public function __construct($judul, $penulis, $penerbit, $harga, $jmlHalaman, $waktuMain, $tipe)
   {
     $this->judul = $judul;
     $this->penulis = $penulis;
@@ -16,19 +17,20 @@ class Produk {
     $this->tipe = $tipe;
   }
 
-  public function getLabel() {
+  public function getLabel()
+  {
     return "$this->penulis, $this->penerbit";
   }
 
   // inharitance
-  public function getInfoLengkap() {
-    $str = "{$this->tipe} : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) - {$this->jmlHalaman} Halaman."; 
-    if ( $this->tipe == "Komik") {
+  public function getInfoLengkap()
+  {
+    $str = "{$this->tipe} : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) - {$this->jmlHalaman} Halaman.";
+    if ($this->tipe == "Komik") {
       $str .= " - {$this->jmlHalaman} Halaman.";
-    } else if ( $this->tipe == "Game" ) {
+    } else if ($this->tipe == "Game") {
       $str .= " ~ {$this->waktuMain} Jam.";
     }
-
     return $str;
   }
 }
@@ -53,8 +55,10 @@ class Produk {
 
 
 // objexk - type
-class CetakInfoProduk {
-  public function cetak( $produk ){
+class CetakInfoProduk
+{
+  public function cetak($produk)
+  {
     $str = "{$produk->judul} | {$produk->getlabel()} (Rp. {$produk->harga})";
     return $str;
   }
